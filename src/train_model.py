@@ -1,11 +1,18 @@
-import torch # note: torch is the baseline tensor library
-import torch.nn as nn # note: neural network module 
-import torch.optim as optim # note: optimisation module
-import torchvision # note: vision
-import torchvision.transforms as transforms # note: transforming images to tensors
-from pathlib import Path # note: filepaths as objects
+import torch
+# note: torch is the baseline tensor library
+import torch.nn as nn
+# note: neural network module 
+import torch.optim as optim
+# note: optimisation module
+import torchvision
+# note: vision
+import torchvision.transforms as transforms
+# note: transforming images to tensors
+from pathlib import Path
+# note: filepaths as objects
 
-torch.manual_seed(23051985)  # note: don't think the seed matters as long as it's consistent, so... let's use me birthday
+torch.manual_seed(23051985)
+# note: don't think the seed matters as long as it's consistent, so... let's use me birthday
 
 # =1 Neural Network Class
 class DigitNet(nn.Module):
@@ -52,17 +59,24 @@ class DigitNet(nn.Module):
     self.fc2 = nn.Linear(128, 10)
     # -2 so it looks like these two steps were about condensing the expanded detail into an output
 
+  # =2 this calls a method, I think x is initially an image
   def forward(self, x):
-    # First conv block: conv -> relu -> pool
+    # -2 OH HELLO I think I misunderstood.
+    # -2 The `__init__` methods don't flow in order.
+    # -2 They're passed by these `forward` methods.
     x = self.pool(torch.relu(self.conv1(x)))
-    # Second conv block: conv -> relu -> pool
     x = self.pool(torch.relu(self.conv2(x)))
-    # Flatten the tensor for fully connected layers
+    # !! 2 pools! self.pool = nn.MaxPool2d(2)!!
+    # ?? x is an image?
+    # -2 relu defines a tensor.
     x = x.view(-1, 64 * 5 * 5)
-    # Dropout and fully connected layers
+    # -2 ok so... 64 * 5 is 320, * 5 is 1600
     x = self.dropout(torch.relu(self.fc1(x)))
     x = self.fc2(x)
+    # ?? this doesn't get converted to a tensor?
     return x
+
+# note: okay, so far I'm inferring that there's this constant push-pull between expanding detail then constraining output.
 
 def main():
   # Set device (GPU if available, else CPU)
