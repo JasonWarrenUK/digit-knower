@@ -29,62 +29,76 @@ Below are the series of atomic, iterative prompts you can hand off to a code-gen
 ### Initialize a new Git repository for the MNIST Digit Classifier project
 
 ```md
-# 1. Create a project directory structure with the following layout:
-#    - /project_root/
-#        - README.md       # Project overview and instructions.
-#        - .gitignore      # To exclude virtual environments, __pycache__, etc.
-#        - /src/           # Source code for the project.
-#        - /model/         # To store the trained PyTorch model.
-#        - /docker/        # Docker-related files including Dockerfile and docker-compose.yml.
-#        - /sql/           # SQL initialization scripts for PostgreSQL.
-#
-# 2. Create an initial README.md that briefly describes the project and lists the required steps.
-#
-# 3. Create a basic .gitignore file (e.g., exclude __pycache__, *.pyc, .env, model files, etc.)
-#
-# Explain each line in the code you write.
+   1. Create a project directory structure with the following layout:
+      - /project_root/
+         - README.md       # Project overview and instructions.
+         - .gitignore      # To exclude virtual environments, __pycache__, etc.
+         - /src/           # Source code for the project.
+         - /model/         # To store the trained PyTorch model.
+         - /docker/        # Docker-related files including Dockerfile and docker-compose.yml.
+         - /sql/           # SQL initialization scripts for PostgreSQL.
+   2. Create an initial README.md that briefly describes the project and lists the required steps.
+   3. Create a basic .gitignore file
+      - `__pycache__`
+      - `*.pyc`
+      - `.env`
+      - model files
 
-# Sample Answer (explain the content):
-# - The README.md gives a high-level project overview.
-# - The .gitignore ensures build artifacts and environment files are not committed.
+   Explain each line in the code you write.
+
+   Sample Answer (explain the content):
+
+   - The README.md gives a high-level project overview.
+   - The .gitignore ensures build artifacts and environment files are not committed.
 ```
 
 ### Create a minimal README.md and .gitignore for the project
 
 ```md
-# README.md should include:
-# - A project overview.
-# - A list of major components (PyTorch training, Streamlit frontend, PostgreSQL logging, and Docker containerization).
-# - Brief instructions on local setup and deployment.
-#
-# .gitignore should include:
-# - Python cache directories (__pycache__)
-# - Compiled Python files (*.pyc)
-# - The .env file which contains environment variables
-# - The model directory content (if you don’t want to commit the trained model)
+Prompt: Create a minimal README.md and .gitignore for the project
 
-# Provide a sample content for both files with detailed comments (explain each line).
+---
+
+README.md should include:
+
+- A project overview.
+- A list of major components (PyTorch training, Streamlit frontend, PostgreSQL logging, and Docker containerization).
+- Brief instructions on local setup and deployment.
+
+.gitignore should include:
+
+- Python cache directories (__pycache__)
+- Compiled Python files (*.pyc)
+- The .env file which contains environment variables
+- The model directory content (if you don’t want to commit the trained model)
+
+Provide a sample content for both files with detailed comments (explain each line).
 ```
 
 ### Write a PyTorch training script named train_model.py in /src/
 
 ```md
-# The script must:
-# 1. Load the MNIST dataset.
-# 2. Define a simple neural network that should achieve around 85-90% accuracy.
-# 3. Train the model for a few epochs.
-# 4. Save the trained model to the /model/ folder.
-#
-# Each section of the code should be commented to explain what it does.
-#
-# Start by:
-# - Importing necessary modules (torch, torchvision, torch.nn, torch.optim, etc.).
-# - Defining a simple neural network architecture.
-# - Loading the MNIST dataset.
-# - Writing the training loop (with loss calculation, optimizer step, etc.).
-# - Saving the model state_dict to a file.
-#
-# Explain each code line/section for clarity.
+Prompt: Write a PyTorch training script named train_model.py in /src/
+
+---
+
+The script must:
+
+1. Load the MNIST dataset.
+2. Define a simple neural network that should achieve around 85-90% accuracy.
+3. Train the model for a few epochs.
+4. Save the trained model to the /model/ folder.
+
+Each section of the code should be commented to explain what it does.
+
+Start by:
+- Importing necessary modules (torch, torchvision, torch.nn, torch.optim, etc.).
+- Defining a simple neural network architecture.
+- Loading the MNIST dataset.
+- Writing the training loop (with loss calculation, optimizer step, etc.).
+- Saving the model state_dict to a file.
+
+Explain each code line/section for clarity.
 ```
 
 ### Develop a Streamlit front-end script named app.py in /src/
