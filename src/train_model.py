@@ -7,20 +7,50 @@ from pathlib import Path # note: filepaths as objects
 
 torch.manual_seed(23051985)  # note: don't think the seed matters as long as it's consistent, so... let's use me birthday
 
+# =1 Neural Network Class
 class DigitNet(nn.Module):
+  # =2 Constructor Method
   def __init__(self):
+    # ??: how is this called? is it automatic when .init called? Implies different use of `.` chain to JS
     super(DigitNet, self).__init__()
-    # First convolutional layer: 1 input channel, 32 output channels, 3x3 kernel
     self.conv1 = nn.Conv2d(1, 32, kernel_size=3)
-    # Second convolutional layer: 32 input channels, 64 output channels, 3x3 kernel
+    # -2 `self` = this class, `conv1` = the first convolutional layer
+      # -3 so actually the `.` operator is doing the same as JS
+      # -3 am I defining a prop or a method?
+    # -2 `nn` is the neural network model I imported
+      # -3 so this is shorthand for `torch.nn`
+    # -2 Conv2d is a method(?) of `torch.nn`
+      # -3 so this is shorthand for `torch.nn.Conv2d`
+      # -3 I can infer that Conv2d is... convolution 2D image?
+      # -3 takes 3 args
+        # ?? input is a 1 channel image (?)
+        # ?? output is a 32 channel image (?)
+        # ?? 3 means a 3x3 filter (?)
+        # ?? WAIT or is it a 1 channel image and then 32 filtered images. different resolutions to trace edges?
     self.conv2 = nn.Conv2d(32, 64, kernel_size=3)
-    # Max pooling layer
+    # -2 So presumably this does the same, converting 32 channels to 64
+      # ?? composite together the 32 maps and convert to 64 maps?
+      # ?? separately pass 32 maps and generate 64 maps?
+      # ?? pass in a 32 channel image and generate a 64 channel image?
     self.pool = nn.MaxPool2d(2)
-    # Dropout layer to prevent overfitting
+    # -2 So this looks like methods that execute sequentially, so this is something that gets done to the 64
+    # -2 MaxPool2d
+      # -3 so we're applying a ceiling
+      # ?? to a "pool" (?)
+      # -3 to a 2d image
+      # ?? so this is about making the expanded information from the convolutional layers manageable?
+      # !! fc1 is taking 128 (64 * 2) as an arg
+      # ?? so is this pooling together up to 2 of `self.conv2`?
     self.dropout = nn.Dropout(0.25)
-    # Fully connected layers
+    # -2 this looks like a probability
+    # -2 we're doing something 25% of the time
+    # ?? maybe... this is about introducing friction? cancelling 25% of methods to approximate the chaos of reality?
     self.fc1 = nn.Linear(64 * 5 * 5, 128)
-    self.fc2 = nn.Linear(128, 10)  # 10 output classes for digits 0-9
+    # -2 welp no idea what this does, BUT...
+      # -3 conv1 & conv2 increased (1, 32, 64)
+      # -3 fc1 & fc2 decreased (128, 10)
+    self.fc2 = nn.Linear(128, 10)
+    # -2 so it looks like these two steps were about condensing the expanded detail into an output
 
   def forward(self, x):
     # First conv block: conv -> relu -> pool
