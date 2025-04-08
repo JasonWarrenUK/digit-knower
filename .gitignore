@@ -190,9 +190,11 @@ cython_debug/
 .DS_Store
 .AppleDouble
 .LSOverride
+.promptyboy
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
