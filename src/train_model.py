@@ -1,18 +1,11 @@
-import torch
-# note: torch is the baseline tensor library
-import torch.nn as nn
-# note: neural network module 
-import torch.optim as optim
-# note: optimisation module
-import torchvision
-# note: vision
-import torchvision.transforms as transforms
-# note: transforming images to tensors
-from pathlib import Path
-# note: filepaths as objects
+import torch # note: torch is the baseline tensor library
+import torch.nn as nn # note: neural network module 
+import torch.optim as optim # note: optimisation module
+import torchvision # note: vision
+import torchvision.transforms as transforms # note: transforming images to tensors
+from pathlib import Path # note: filepaths as objects
 
-torch.manual_seed(23051985)
-# note: don't think the seed matters as long as it's consistent, so... let's use me birthday
+torch.manual_seed(23051985) # note: don't think the seed matters
 
 # =1 Neural Network Class
 class DigitNet(nn.Module):
@@ -78,18 +71,18 @@ class DigitNet(nn.Module):
 
 # note: okay, so far I'm inferring that there's this constant push-pull between expanding detail then constraining output.
 
-def main():
-  # Set device (GPU if available, else CPU)
-  device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+def main(): # note: we're going to call this later. But we don't explicitly instantiate the class?
+  device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') # note: i can haz gpu
   print(f"Using device: {device}")
 
-  # Define data transformations
+  '''
+  torchvision.transforms.Compose
+  '''
   transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.1307,), (0.3081,))  # MNIST mean and std
   ])
 
-  # Load MNIST dataset
   train_dataset = torchvision.datasets.MNIST(
     root='./data',
     train=True,
@@ -97,19 +90,16 @@ def main():
     download=True
   )
 
-  # Create data loader
   train_loader = torch.utils.data.DataLoader(
     train_dataset,
     batch_size=64,
     shuffle=True
   )
 
-  # Initialize model, loss function, and optimizer
   model = DigitNet().to(device)
   criterion = nn.CrossEntropyLoss()
   optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-  # Training loop
   num_epochs = 5
   for epoch in range(num_epochs):
     model.train()
@@ -148,11 +138,9 @@ def main():
         )
         running_loss = 0.0
 
-  # Create model directory if it doesn't exist
   model_dir = Path('model')
   model_dir.mkdir(exist_ok=True)
 
-  # Save the model
   model_path = model_dir / 'mnist_model.pth'
   torch.save(model.state_dict(), model_path)
   print(f'\nModel saved to {model_path}')

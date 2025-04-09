@@ -104,16 +104,23 @@ Explain each code line/section for clarity.
 ### Develop a Streamlit front-end script named app.py in /src/
 
 ```md
-# 1. Loads the pre-trained PyTorch model saved previously.
-# 2. Provides a canvas or drawing area for the user to input a digit.
-# 3. On submission, sends the drawn image to the model for prediction.
-# 4. Displays the predicted digit and confidence score.
-# 5. Provides user feedback controls: a button for 'Correct', a text input for the correct digit if wrong, and a submit button for corrections.
-#
-# Make sure to add detailed comments for every major block and line:
-# - Explain how the model is loaded.
-# - Show how to handle image pre-processing to convert the canvas image into tensor format.
-# - Explain the UI elements and their purpose.
+Prompt: Develop a Streamlit front-end script named app.py in /src/
+
+---
+
+1. Loads the pre-trained PyTorch model saved previously.
+2. Provides a canvas or drawing area for the user to input a digit.
+3. On submission, sends the drawn image to the model for prediction.
+4. Displays the predicted digit and confidence score.
+5. Provides user feedback controls: a button for 'Correct', a text input for the correct digit if wrong, and a submit button for corrections.
+
+---
+
+Make sure to add detailed comments for every major block and line:
+
+- Explain how the model is loaded.
+- Show how to handle image pre-processing to convert the canvas image into tensor format.
+- Explain the UI elements and their purpose.
 ```
 
 ### Write a Python module (logger.py) inside /src/
