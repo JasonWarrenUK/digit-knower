@@ -2,6 +2,35 @@
 
 > I don't know much, but I know me some digits.
 
+## Current State
+
+### My Understanding
+
+I've had limited time due to facilitating FAC 31 and working on a client project, so I attempted to prioritise grasping the basics of:
+
+- Python
+- Torch
+- Torchvision
+
+You can find my annotations on the neural network class in my [`train_model.py`](src/train_model.py) file. I think I have a grasp of what each line in the class' `__init__` and `forward` methods is doing, but a lot of it is based on inference.
+
+For instance, I can infer the general purpose of what the `conv*` and `fc*` layers do, but not the mechanics by which that occurs.
+
+### Model
+
+- The model is trained, and saved in the model folder.
+- I targeted 85-90% accuracy, but found I was getting 99.24% after 3 epochs (5 phases each)
+
+### UI
+
+- I had reached the point where the user could draw a digit on the canvas, but pressing the predict button failed to acknowledge that a digit had been drawn
+- In my subsequent attempts to fix it, I've broken the canvas.
+- Sigh.
+
+### Deployment & Containerisation
+
+- Not started
+
 ## Overview
 
 Digit Knower is a machine learning project that uses PyTorch to train and deploy a model for digit recognition. The project features a Streamlit-based frontend for interactive testing and PostgreSQL for logging predictions and model performance metrics.
